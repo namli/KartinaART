@@ -159,7 +159,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mods_slider_bottom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mods/slider_bottom */ "./src/mods/slider_bottom.js");
 /* harmony import */ var _mods_loadmore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mods/loadmore */ "./src/mods/loadmore.js");
 /* harmony import */ var _mods_accordeon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mods/accordeon */ "./src/mods/accordeon.js");
+/* harmony import */ var _mods_filter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mods/filter */ "./src/mods/filter.js");
 __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/formdata.min.js");
+
 
 
 
@@ -172,6 +174,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_mods_slider_bottom__WEBPACK_IMPORTED_MODULE_1__["default"])();
   Object(_mods_loadmore__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_mods_accordeon__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  Object(_mods_filter__WEBPACK_IMPORTED_MODULE_4__["default"])();
 });
 
 if ('NodeList' in window && !NodeList.prototype.forEach) {
@@ -217,6 +220,48 @@ function accordeon() {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (accordeon);
+
+/***/ }),
+
+/***/ "./src/mods/filter.js":
+/*!****************************!*\
+  !*** ./src/mods/filter.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function filter() {
+  var filterSection = document.querySelector("#portfolio"),
+      menu = filterSection.querySelector('.portfolio-menu'),
+      items = filterSection.querySelectorAll('.portfolio-block'),
+      noItemPlaceholder = filterSection.querySelector('.portfolio-no');
+  menu.addEventListener('click', function (e) {
+    if (e.target.nodeName === "LI") {
+      var filterClass = e.target.getAttribute("class"),
+          menuTabs = menu.querySelectorAll('li');
+      menuTabs.forEach(function (element) {
+        element.classList.remove("active");
+      });
+      noItemPlaceholder.style.display = 'none';
+      e.target.classList.add('active');
+      items.forEach(function (element) {
+        if (!element.classList.contains(filterClass)) {
+          element.classList.add("hidden");
+        } else {
+          element.classList.remove("hidden");
+        }
+      });
+
+      if (filterSection.querySelectorAll('div.' + filterClass).length < 1) {
+        noItemPlaceholder.style.display = 'block';
+      }
+    }
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (filter);
 
 /***/ }),
 
