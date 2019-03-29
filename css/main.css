@@ -909,6 +909,7 @@ h4 {
   margin-top: 6rem;
   background-color: #f7e7e6;
   padding: 3rem 4rem;
+  display: none;
 }
 .often-questions .accordion-block:before {
   content: '';
@@ -929,6 +930,7 @@ h4 {
 }
 .often-questions .ui-accordion-content-active {
   margin-bottom: 4rem;
+  display: block;
 }
 .often-questions .brushes {
   position: absolute;
