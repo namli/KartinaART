@@ -698,7 +698,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mods_formsvalidate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mods/formsvalidate */ "./src/mods/formsvalidate.js");
 /* harmony import */ var _mods_sendform__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./mods/sendform */ "./src/mods/sendform.js");
 /* harmony import */ var _mods_imagehover__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./mods/imagehover */ "./src/mods/imagehover.js");
+/* harmony import */ var _mods_burger__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./mods/burger */ "./src/mods/burger.js");
 __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/formdata.min.js");
+
 
 
 
@@ -720,6 +722,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_mods_formsvalidate__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_mods_sendform__WEBPACK_IMPORTED_MODULE_7__["default"])();
   Object(_mods_imagehover__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  Object(_mods_burger__WEBPACK_IMPORTED_MODULE_9__["default"])();
 });
 
 if ('NodeList' in window && !NodeList.prototype.forEach) {
@@ -765,6 +768,37 @@ function accordeon() {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (accordeon);
+
+/***/ }),
+
+/***/ "./src/mods/burger.js":
+/*!****************************!*\
+  !*** ./src/mods/burger.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function burger() {
+  var burgerBtn = document.querySelector('.burger'),
+      burgerMenu = document.querySelector('.burger-menu'),
+      width = document.documentElement.clientWidth;
+
+  if (width <= 768) {
+    burgerBtn.addEventListener('click', function () {
+      burgerMenu.classList.toggle('show');
+    });
+  }
+
+  window.addEventListener('resize', function () {
+    if (document.documentElement.clientWidth > 768) {
+      burgerMenu.classList.remove('show');
+    }
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (burger);
 
 /***/ }),
 
