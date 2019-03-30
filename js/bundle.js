@@ -699,7 +699,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mods_sendform__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./mods/sendform */ "./src/mods/sendform.js");
 /* harmony import */ var _mods_imagehover__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./mods/imagehover */ "./src/mods/imagehover.js");
 /* harmony import */ var _mods_burger__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./mods/burger */ "./src/mods/burger.js");
+/* harmony import */ var _mods_calc__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./mods/calc */ "./src/mods/calc.js");
 __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/formdata.min.js");
+
 
 
 
@@ -723,6 +725,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_mods_sendform__WEBPACK_IMPORTED_MODULE_7__["default"])();
   Object(_mods_imagehover__WEBPACK_IMPORTED_MODULE_8__["default"])();
   Object(_mods_burger__WEBPACK_IMPORTED_MODULE_9__["default"])();
+  Object(_mods_calc__WEBPACK_IMPORTED_MODULE_10__["default"])();
 });
 
 if ('NodeList' in window && !NodeList.prototype.forEach) {
@@ -799,6 +802,75 @@ function burger() {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (burger);
+
+/***/ }),
+
+/***/ "./src/mods/calc.js":
+/*!**************************!*\
+  !*** ./src/mods/calc.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function calc() {
+  var calc = document.querySelector('.calc'),
+      size = calc.querySelector('#size'),
+      material = calc.querySelector('#material'),
+      options = calc.querySelector('#options'),
+      promocode = calc.querySelector('.promocode'),
+      placeholderText = 'Для расчета нужно выбрать размер картины и материал картины',
+      price = calc.querySelector('.calc-price');
+  size.addEventListener('change', function (e) {
+    if (validateClac()) {
+      price.innerHTML = countPrice().toFixed();
+    } else {
+      price.innerHTML = placeholderText;
+    }
+  });
+  material.addEventListener('change', function (e) {
+    if (validateClac()) {
+      price.innerHTML = countPrice().toFixed();
+    } else {
+      price.innerHTML = placeholderText;
+    }
+  });
+  options.addEventListener('change', function (e) {
+    if (validateClac()) {
+      price.innerHTML = countPrice().toFixed();
+    } else {
+      price.innerHTML = placeholderText;
+    }
+  });
+  promocode.addEventListener('input', function (e) {
+    if (validateClac()) {
+      price.innerHTML = countPrice().toFixed();
+    } else {
+      price.innerHTML = placeholderText;
+    }
+  });
+
+  function validateClac() {
+    if (size.selectedIndex != 0 && material.selectedIndex != 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function countPrice() {
+    var totalPrice = size.selectedIndex + material.selectedIndex + options.selectedIndex;
+
+    if (promocode.value === 'IWANTPOPART') {
+      totalPrice = totalPrice * 0.7;
+    }
+
+    return totalPrice * 1000;
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (calc);
 
 /***/ }),
 
