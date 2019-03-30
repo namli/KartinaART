@@ -697,7 +697,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mods_filter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./mods/filter */ "./src/mods/filter.js");
 /* harmony import */ var _mods_formsvalidate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mods/formsvalidate */ "./src/mods/formsvalidate.js");
 /* harmony import */ var _mods_sendform__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./mods/sendform */ "./src/mods/sendform.js");
+/* harmony import */ var _mods_imagehover__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./mods/imagehover */ "./src/mods/imagehover.js");
 __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/formdata.min.js");
+
 
 
 
@@ -717,6 +719,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_mods_filter__WEBPACK_IMPORTED_MODULE_5__["default"])();
   Object(_mods_formsvalidate__WEBPACK_IMPORTED_MODULE_6__["default"])();
   Object(_mods_sendform__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  Object(_mods_imagehover__WEBPACK_IMPORTED_MODULE_8__["default"])();
 });
 
 if ('NodeList' in window && !NodeList.prototype.forEach) {
@@ -872,6 +875,59 @@ function formsvalidate() {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (formsvalidate);
+
+/***/ }),
+
+/***/ "./src/mods/imagehover.js":
+/*!********************************!*\
+  !*** ./src/mods/imagehover.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function imagehover() {
+  var canvasBlock = document.querySelector('.sizes-wrapper'),
+      canvasDiv = canvasBlock.querySelectorAll('.sizes-block'),
+      images = [{
+    size: 'img/sizes-1.png',
+    newSize: 'img/sizes-1-1.png'
+  }, {
+    size: 'img/sizes-2.png',
+    newSize: 'img/sizes-2-1.png'
+  }, {
+    size: 'img/sizes-3.png',
+    newSize: 'img/sizes-3-1.png'
+  }, {
+    size: 'img/sizes-4.png',
+    newSize: 'img/sizes-4-1.png'
+  }];
+  canvasDiv.forEach(function (element) {
+    element.addEventListener('mouseenter', function (e) {
+      var typeCanvas = e.target.querySelector('img').getAttribute('class').slice(-1);
+      e.target.querySelector('img').setAttribute("src", images[typeCanvas - 1].newSize);
+    });
+    element.addEventListener('mouseleave', function (e) {
+      var typeCanvas = e.target.querySelector('img').getAttribute('class').slice(-1);
+      e.target.querySelector('img').setAttribute("src", images[typeCanvas - 1].size);
+    });
+    element.addEventListener('click', function (e) {
+      var parentDiv = e.target.parentNode,
+          typeCanvas = parentDiv.querySelector('img').getAttribute('class').slice(-1);
+
+      if (parentDiv.getAttribute('data-canvasswitch') != '1') {
+        parentDiv.querySelector('img').setAttribute("src", images[typeCanvas - 1].newSize);
+        parentDiv.setAttribute('data-canvasswitch', '1');
+      } else if (parentDiv.getAttribute('data-canvasswitch') === '1') {
+        parentDiv.querySelector('img').setAttribute("src", images[typeCanvas - 1].size);
+        parentDiv.setAttribute('data-canvasswitch', '');
+      }
+    });
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (imagehover);
 
 /***/ }),
 
