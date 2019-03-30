@@ -700,7 +700,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mods_imagehover__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./mods/imagehover */ "./src/mods/imagehover.js");
 /* harmony import */ var _mods_burger__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./mods/burger */ "./src/mods/burger.js");
 /* harmony import */ var _mods_calc__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./mods/calc */ "./src/mods/calc.js");
+/* harmony import */ var _mods_present__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./mods/present */ "./src/mods/present.js");
+/* harmony import */ var _mods_consultation__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./mods/consultation */ "./src/mods/consultation.js");
+/* harmony import */ var _mods_design__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./mods/design */ "./src/mods/design.js");
+/* harmony import */ var _mods_allmodal__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./mods/allmodal */ "./src/mods/allmodal.js");
 __webpack_require__(/*! formdata-polyfill */ "./node_modules/formdata-polyfill/formdata.min.js");
+
+
+
+
 
 
 
@@ -726,6 +734,10 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_mods_imagehover__WEBPACK_IMPORTED_MODULE_8__["default"])();
   Object(_mods_burger__WEBPACK_IMPORTED_MODULE_9__["default"])();
   Object(_mods_calc__WEBPACK_IMPORTED_MODULE_10__["default"])();
+  Object(_mods_present__WEBPACK_IMPORTED_MODULE_11__["default"])();
+  Object(_mods_consultation__WEBPACK_IMPORTED_MODULE_12__["default"])();
+  Object(_mods_design__WEBPACK_IMPORTED_MODULE_13__["default"])();
+  Object(_mods_allmodal__WEBPACK_IMPORTED_MODULE_14__["default"])();
 });
 
 if ('NodeList' in window && !NodeList.prototype.forEach) {
@@ -771,6 +783,33 @@ function accordeon() {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (accordeon);
+
+/***/ }),
+
+/***/ "./src/mods/allmodal.js":
+/*!******************************!*\
+  !*** ./src/mods/allmodal.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function allmodal() {
+  var modalForm = document.querySelectorAll('.popup-design, .popup-consultation, .popup-gift');
+  modalForm.forEach(function (element) {
+    element.addEventListener('click', function (e) {
+      if (e.target == element) {
+        element.classList.toggle('show');
+      }
+    });
+    element.querySelector('.popup-close').addEventListener('click', function (e) {
+      element.classList.toggle('show');
+    });
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (allmodal);
 
 /***/ }),
 
@@ -871,6 +910,64 @@ function calc() {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (calc);
+
+/***/ }),
+
+/***/ "./src/mods/consultation.js":
+/*!**********************************!*\
+  !*** ./src/mods/consultation.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function consultation() {
+  var consultBtn = document.querySelectorAll('.card button'),
+      consultpopup = document.querySelector('.popup-consultation'),
+      designForm = document.querySelector('.popup-design'),
+      giftForm = document.querySelector('.popup-gift');
+  consultBtn.forEach(function (element) {
+    element.addEventListener('click', function (e) {
+      consultpopup.classList.toggle('show');
+    });
+  });
+  var timerId = setInterval(function () {
+    if (performance.now() > 600000) {
+      if (designForm.style.display != 'block' && consultpopup.style.display != 'block' && giftForm.style.display != 'block') {
+        consultpopup.classList.add('show');
+      }
+    }
+  }, 1000);
+  setTimeout(function () {
+    clearInterval(timerId);
+  }, 60100);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (consultation);
+
+/***/ }),
+
+/***/ "./src/mods/design.js":
+/*!****************************!*\
+  !*** ./src/mods/design.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function design() {
+  var btnDesign = document.querySelectorAll('.button-design'),
+      modalForm = document.querySelector('.popup-design');
+  btnDesign.forEach(function (element) {
+    element.addEventListener('click', function (e) {
+      modalForm.classList.toggle('show');
+    });
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (design);
 
 /***/ }),
 
@@ -1060,6 +1157,43 @@ function loadMore() {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (loadMore);
+
+/***/ }),
+
+/***/ "./src/mods/present.js":
+/*!*****************************!*\
+  !*** ./src/mods/present.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function present() {
+  var presentBtn = document.querySelector('.fixed-gift'),
+      popupGift = document.querySelector('.popup-gift'),
+      allBtn = document.querySelectorAll('button'),
+      btnFlag;
+  presentBtn.addEventListener('click', function (e) {
+    e.target.classList.add('hide');
+    popupGift.classList.add('show');
+  });
+  allBtn.forEach(function (element) {
+    element.addEventListener('click', function (e) {
+      btnFlag = 1;
+    });
+  });
+  window.addEventListener('scroll', function (e) {
+    var distanceFromBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
+
+    if (distanceFromBottom < 100 && btnFlag != 1) {
+      presentBtn.classList.add('hide');
+      popupGift.classList.add('show');
+    }
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (present);
 
 /***/ }),
 
