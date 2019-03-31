@@ -824,15 +824,12 @@ function allmodal() {
 __webpack_require__.r(__webpack_exports__);
 function burger() {
   var burgerBtn = document.querySelector('.burger'),
-      burgerMenu = document.querySelector('.burger-menu'),
-      width = document.documentElement.clientWidth;
-
-  if (width <= 768) {
-    burgerBtn.addEventListener('click', function () {
+      burgerMenu = document.querySelector('.burger-menu');
+  burgerBtn.addEventListener('click', function () {
+    if (document.documentElement.clientWidth <= 768) {
       burgerMenu.classList.toggle('show');
-    });
-  }
-
+    }
+  });
   window.addEventListener('resize', function () {
     if (document.documentElement.clientWidth > 768) {
       burgerMenu.classList.remove('show');
@@ -901,7 +898,7 @@ function calc() {
   function countPrice() {
     var totalPrice = size.selectedIndex + material.selectedIndex + options.selectedIndex;
 
-    if (promocode.value === 'IWANTPOPART') {
+    if (promocode.value.trim() === 'IWANTPOPART') {
       totalPrice = totalPrice * 0.7;
     }
 
@@ -933,7 +930,7 @@ function consultation() {
     });
   });
   var timerId = setInterval(function () {
-    if (performance.now() > 600000) {
+    if (performance.now() > 60000) {
       if (designForm.style.display != 'block' && consultpopup.style.display != 'block' && giftForm.style.display != 'block') {
         consultpopup.classList.add('show');
       }
@@ -1040,7 +1037,7 @@ function formsvalidate() {
     element.addEventListener('input', function (e) {
       e.target.value = validateRusInput(e.target.value);
     });
-  }); // ---------------------- общие функции -----------------------
+  });
 
   function validateRusInput(input) {
     if (!input.match("^[? А-ЯЁа-яё]+$")) {
@@ -1223,11 +1220,14 @@ function sendform() {
 
       request.onreadystatechange = function () {
         if (request.readyState < 4) {
+          status.classList.remove('hide');
           status.innerHTML = '<span class="modal-loading_text">Загрузка...</span><img src="img/ajax-loader.gif" class="modal-loading_img" alt="">';
         } else if (request.readyState === 4) {
           if (request.status == 200 && request.status < 300) {
+            status.classList.remove('hide');
             status.innerHTML = '<span class="modal-success_text">Спасибо, скоро мы с вами свяжемся</span><img src="img/ok-mark.png" class="modal-success_img" alt="">';
           } else {
+            status.classList.remove('hide');
             status.innerHTML = '<span class="modal-success_text">Что-то пошло не так</span><img src="img/close-button.png" class="modal-failure_img" alt="">';
           }
         }
@@ -1236,6 +1236,12 @@ function sendform() {
       e.target.querySelectorAll('input').forEach(function (element) {
         element.value = '';
       });
+      e.target.querySelectorAll('textarea').forEach(function (element) {
+        element.value = '';
+      });
+      setTimeout(function () {
+        status.classList.add('hide');
+      }, 6000);
     });
   });
 }
