@@ -880,6 +880,8 @@ function calc() {
     }
   });
   promocode.addEventListener('input', function (e) {
+    promocode.value = promocode.value.trim();
+
     if (validateClac()) {
       price.innerHTML = countPrice().toFixed();
     } else {
