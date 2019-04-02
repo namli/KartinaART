@@ -1187,6 +1187,7 @@ function present() {
 
     if (distanceFromBottom < 100 && btnFlag != 1) {
       presentBtn.classList.add('hide');
+      popupGift.classList.remove('hide');
       popupGift.classList.add('show');
     }
   });

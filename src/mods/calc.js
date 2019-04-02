@@ -32,6 +32,7 @@ function calc() {
         });
 
         promocode.addEventListener('input', e =>{
+            promocode.value = promocode.value.trim();
             if (validateClac()) {
                 price.innerHTML = countPrice().toFixed();
             } else {
