@@ -1183,7 +1183,7 @@ function present() {
     });
   });
   window.addEventListener('scroll', function (e) {
-    var distanceFromBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
+    var distanceFromBottom = document.body.scrollHeight - window.innerHeight - document.documentElement.scrollTop;
 
     if (distanceFromBottom < 100 && btnFlag != 1) {
       presentBtn.classList.add('hide');
